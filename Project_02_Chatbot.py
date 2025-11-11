@@ -19,7 +19,8 @@ import os #[get key]
 
 # load API Key
 load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
+api_key_ = os.getenv("OPENAI_API_KEY")
+model_url = os.getenv("base_url")
 
 # define memory of your workflow [STATE]
 
@@ -28,6 +29,17 @@ class chatstate(TypedDict):
     response = str
 
 # Craeteing model 
+llm_model = ChatOpenAI(
+    model= "gpt-3.5-turbo",
+    api_key=api_key_,
+    base_url= model_url
+)
+
+def ask_question_node(state:chatstate):
+    question = state["question"]
+    response = llm_model.invoke(question)
+    state['response'] = response.content
+    return state
 
 
 
