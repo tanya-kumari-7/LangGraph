@@ -74,8 +74,14 @@ app =graph.compile()
 # run graph:
 
 if __name__ == "__main__":
-    user_question = input("Enter your question: ASK ANYTHING")
-    initial_question = {"question":user_question,"response":""}
-    final_state = app.invoke(initial_question)
+    while True:
+        user_question = input("Enter your question: ASK ME ANYTHING ------")
+        initial_question = {"question":user_question,"response":""}
+        final_state = app.invoke(initial_question)
+
+        another = input("\nWould you like to ask me anything else : (Yes/No)").strip().lower()
+        if another not in ["yes"]:
+            print("Thanks for connecting : SEE YOU SOON !!!!!")
+            break
 
         
