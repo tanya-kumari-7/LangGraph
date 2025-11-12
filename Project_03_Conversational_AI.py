@@ -9,6 +9,8 @@ Medical AI assistant
      c. Location of the user
      d. Mobile_no of the user
      e. Medical Issue description
+     
+2. Check and nearest Doctor
 """
 
 # Imports
@@ -18,4 +20,11 @@ from langchain_openai import ChatOpenAI
 from typing import  TypedDict
 from dotenv import load_dotenv
 import os
+
+
+# Load API
+
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+base_url = os.getenv("base_url")
 
