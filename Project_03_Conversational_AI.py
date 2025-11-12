@@ -40,6 +40,7 @@ class ChatState(TypedDict):
     location : str
     mobile : int
     issue : str
+    response : str
 # --------------------------------------
 #  Createing LLM Model 
 # -------------------------------------
@@ -54,4 +55,10 @@ llm_model = ChatOpenAI(
 # Define Nodes 
 # -------------------------------------
 
-def()
+def get_data_from_user(state:ChatState):
+
+    print('''
+                Hi there !!!
+                    I'm your medical AI Assistant.
+                    To help you further I need few information from you
+          ''')
