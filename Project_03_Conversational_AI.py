@@ -86,3 +86,23 @@ def find_doctor(state:ChatState):
     response = llm_model.invoke(prompt).content
     state['response'] = response
     return state
+
+# ---------------------------------------
+# Build the Graph
+# ---------------------------------------
+
+graph = StateGraph(ChatState)
+graph.add_node('Get_user_data',get_data_from_user)
+graph.add_node("get_doctor_info",find_doctor)
+
+# -------------------------------------------
+#  Add Edge
+# -------------------------------------------
+
+graph.add_edge(START,'Get_user_data')
+graph.add_edge('Get_user_data','find_doctor')
+graph.add_edge('find_doctor',END)
+
+# ------------------------------------------------
+#  Complie graph 
+# ------------------------------------------------
