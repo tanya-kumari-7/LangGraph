@@ -99,11 +99,11 @@ graph.add_node("get_doctor_info",find_doctor)
 #  Add Edge
 # -------------------------------------------
 
-graph.add_node("find_doctor", find_doctor)
+# graph.add_edge("find_doctor", find_doctor)
 
 graph.add_edge(START, 'Get_user_data')
-graph.add_edge('Get_user_data', 'find_doctor')
-graph.add_edge('find_doctor', END)
+graph.add_edge('Get_user_data', 'get_doctor_info')
+graph.add_edge('get_doctor_info', END)
 
 
 # ------------------------------------------------
@@ -113,4 +113,4 @@ graph.add_edge('find_doctor', END)
 app = graph.compile()
 
 result = app.invoke({})
-print ("Please check your info :" result)
+print ("Please check your info :", result)
