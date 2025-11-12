@@ -62,3 +62,27 @@ def get_data_from_user(state:ChatState):
                     I'm your medical AI Assistant.
                     To help you further I need few information from you
           ''')
+    
+    name = str(input("Please enter your name:"))
+    age = int(input("Please enter your name:"))
+    location = str(input("Please enter your name:"))
+    mobile = int(input("Please enter your name:"))
+    issue = str(input("Please enter your name:"))
+
+    return {
+        "name":name,
+        "age":age,
+        "location":location,
+        "mobile":mobile,
+        "issue":issue
+    }
+
+def find_doctor(state:ChatState):
+    prompt = f"""
+        A patient named {state['name']}, age {state["age"]} from {state["location"]}
+        has the following medical issue : {state["issue"]}.
+        Please suggest the nearest doctor or medical department or hospital location
+        """
+    response = llm_model.invoke(prompt).content
+    state['response'] = response
+    return state
