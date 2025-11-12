@@ -64,10 +64,10 @@ def get_data_from_user(state:ChatState):
           ''')
     
     name = str(input("Please enter your name:"))
-    age = int(input("Please enter your name:"))
-    location = str(input("Please enter your name:"))
-    mobile = int(input("Please enter your name:"))
-    issue = str(input("Please enter your name:"))
+    age = int(input("Please enter your age:"))
+    location = str(input("Please enter your location:"))
+    mobile = int(input("Please enter your mobile:"))
+    issue = str(input("Please enter your issue:"))
 
     return {
         "name":name,
@@ -99,10 +99,18 @@ graph.add_node("get_doctor_info",find_doctor)
 #  Add Edge
 # -------------------------------------------
 
-graph.add_edge(START,'Get_user_data')
-graph.add_edge('Get_user_data','find_doctor')
-graph.add_edge('find_doctor',END)
+graph.add_node("find_doctor", find_doctor)
+
+graph.add_edge(START, 'Get_user_data')
+graph.add_edge('Get_user_data', 'find_doctor')
+graph.add_edge('find_doctor', END)
+
 
 # ------------------------------------------------
 #  Complie graph 
 # ------------------------------------------------
+
+app = graph.compile()
+
+result = app.invoke({})
+print ("Please check your info :" result)
